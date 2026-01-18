@@ -1,0 +1,813 @@
+{
+  "info": {
+    "_postman_id": "415ea7e3-6398-428f-bb04-1831460ebdf0",
+    "name": "diStreaming API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f5195bea-1921-4136-ac33-e560176b42c2",
+                "exec": [
+                  "pm.test(\"Register success (201)\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "05f949ce-b054-4c1f-ba4a-a6829d41b163",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"bima\",\r\n  \"email\": \"bima@gmail.com\",\r\n  \"password\": \"passworddd\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "328db20a-74f0-41a4-8d53-fd04df9fad0a",
+                "exec": [
+                  "const res = pm.response.json();\r",
+                  "\r",
+                  "// simpan token ke environment\r",
+                  "if (res.success && res.data && res.data.token) {\r",
+                  "    pm.environment.set(\"token\", res.data.token);\r",
+                  "}\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Login success (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Login failed (401)\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "ad26a9ed-7e87-40c7-ae33-a5c0c1663826",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "1|MjHtFtjSUcdxtoNuMUdrUD8H8HBGNBlxc3SG8K1M11a1a496",
+                "type": "text",
+                "uuid": "b77e9c0a-c45a-40ad-aa11-12d23f95eae7"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "73e677ea-dcbf-4a54-9825-577ddcc85428"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\r\n//   \"name\": \"Akbar\",\r\n//   \"email\": \"Akbar@gmail.com\",\r\n//   \"password\": \"password\"\r\n// }\r\n\r\n// {\r\n//   \"name\": \"Pangestu\",\r\n//   \"email\": \"Pangestu@gmail.com\",\r\n//   \"password\": \"passwordd\"\r\n// }\r\n\r\n{\r\n  \"name\": \"bima\",\r\n  \"email\": \"bima@gmail.com\",\r\n  \"password\": \"passworddd\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "0fa30922-9fa0-4a35-9572-379790bc357c"
+    },
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "show movies",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4c9c7067-cb04-4bdb-96f4-a83dc0d92299",
+                "exec": [
+                  "pm.test(\"Get movies public (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "87bf2f2f-9fe3-455c-9e51-c57f0deca7f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "1bb3a235-f772-423b-a615-867b9b7d2757"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/movies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search movie",
+          "id": "36c06895-6936-4e60-9a1a-8c882ddc8c18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"The Avengers\",\r\n  \"description\": \"Spiritual a heroes\",\r\n  \"rating\": 8.0,\r\n  \"release_year\": 2019,\r\n  \"category_id\": 1,\r\n  \"thumbnail\": \"Avengers.jpg\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{base_url}}/movies/15",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "show movie id",
+          "id": "5fd1f424-190b-4a98-b682-b02177100c81",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"The Avengers\",\r\n  \"description\": \"Spiritual a heroes\",\r\n  \"rating\": 8.0,\r\n  \"release_year\": 2019,\r\n  \"category_id\": 1,\r\n  \"thumbnail\": \"Avengers.jpg\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{base_url}}/movies/15",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "input movie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c2d37c7d-5693-4fa0-876d-cde281f528b7",
+                "exec": [
+                  "pm.test(\"Create movie with auth (201)\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "d48ac258-577f-471e-8712-dc0a852c0b85",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "614734e2-5e5e-43e8-9c36-b8babc3a31d1"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "fd8ea5fa-0c18-426c-b7d7-3a0009a60aa9"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Abadi Nan Jaya\",\r\n  \"description\": \"Chaos and Survival\",\r\n  \"rating\": 8.9,\r\n  \"release_year\": 2024,\r\n  \"category_id\": 9,\r\n  \"thumbnail\": \"Abadi.jpg\"\r\n}\r\n\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/movies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit movie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a4bc792e-045a-4019-ad16-5d9e86cf8046",
+                "exec": [
+                  "pm.test(\"Update movie with auth (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "428506ed-486e-48e8-b8c2-c6151b2b8712",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"The Elixir\",\r\n  \"description\": \"Chaos and Survival\",\r\n  \"rating\": 8.9,\r\n  \"release_year\": 2024,\r\n  \"category_id\": 9,\r\n  \"thumbnail\": \"Abadi.jpg\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/movies/15",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete movie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "333b8729-7fa9-451a-893e-7653e42419a2",
+                "exec": [
+                  "pm.test(\"Delete movie with auth (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "57add821-8935-4e17-b9e2-485106209fea",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "1e5ea335-d4d2-4759-a67d-7edfd525147c"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/movies/21",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movies",
+                "21"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7e2e3b9e-5ed7-494c-bf80-db06302c52f3"
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "show categories",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "955ea24e-28e5-4e2b-9448-13a74f165acc",
+                "exec": [
+                  "pm.test(\"Get categories public (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "ec1f0e5c-b2f0-4daf-ab6c-6bebc73ebb41",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "show categori id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "955ea24e-28e5-4e2b-9448-13a74f165acc",
+                "exec": [
+                  "pm.test(\"Get categories public (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6df707cd-5f81-44e5-b458-105a4db9417a",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "4b081869-89fe-408f-9870-0a231ca388bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories/15",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "input categorie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "33d6d65b-ac3b-48fd-bf8e-83068b0af827",
+                "exec": [
+                  "pm.test(\"Create category with auth (201)\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "56cdf8ce-cb7e-4ca4-a678-617749ae526a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "5b2b56a1-9d9b-48f6-bdd3-e9879af29781"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "973a3beb-f248-48dc-96d0-d161c59d2b83"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Documentary\",\r\n  \"description\": \"Film dokumenter\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit categorie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "33d6d65b-ac3b-48fd-bf8e-83068b0af827",
+                "exec": [
+                  "pm.test(\"Update category with auth (201)\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4fb3eeed-622d-4525-afa8-90553fc36d72",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "6023844d-ecc0-4e0c-a622-ce86d8dee65a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "5b2b56a1-9d9b-48f6-bdd3-e9879af29781"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "973a3beb-f248-48dc-96d0-d161c59d2b83"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Documentary\",\r\n  \"description\": \"Film dokumenter\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/categories/12",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "12"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete cataegorie",
+          "id": "1acc0325-226a-4be6-ad69-04fed9f54d40",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text",
+                "uuid": "c8e8f0a4-aa1a-481b-8959-618db625e872"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories/15",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b6ecca34-5ae0-4a11-996a-0e3d40c291e6"
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "458f59fe-84a8-492f-9b5c-b45f3fdd12ad",
+                "exec": [
+                  "pm.test(\"Logout success (200)\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "95f5aae9-ed40-4ab9-821b-95a41e4a8458",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "ef0277f2-08a7-4e3a-bbc1-2ff992d0fc47",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\r\n//   \"name\": \"Akbar\",\r\n//   \"email\": \"Akbar@gmail.com\",\r\n//   \"password\": \"password\"\r\n// }\r\n// {\r\n//   \"name\": \"Pangestu\",\r\n//   \"email\": \"Pangestu@gmail.com\",\r\n//   \"password\": \"passwordd\"\r\n// }\r\n\r\n{\r\n  \"name\": \"bima\",\r\n  \"email\": \"bima@gmail.com\",\r\n  \"password\": \"passworddd\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "850dac67-5aaf-4713-b1d6-4d4dd1b7de7f"
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Show Users",
+          "id": "38375516-9ca7-4ffd-879d-fd340e8587aa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7bd07e7c-fef2-45b4-8ae2-7db405bb3cfb"
+    }
+  ]
+}

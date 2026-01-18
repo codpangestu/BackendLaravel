@@ -46,12 +46,13 @@ class MovieController extends Controller
                         'id' => $movie->category->id,
                         'name' => $movie->category->name
                     ],
-                    'thumbnail' => $movie->thumbnail
+                    'thumbnail' => $this->tmdbThumbnail($movie->thumbnail)
                 ];
             })
         ]);
     }
 
+    // sort by Rating
     private function ratingClass($rating)
     {
         if ($rating >= 8.5) {
@@ -61,6 +62,23 @@ class MovieController extends Controller
         }
         return 'Regular';
     }
+
+    // helper untuk TMDB thumbnail
+    private function tmdbThumbnail($path)
+    {
+    if (!$path) {
+        return null;
+    }
+
+    // kalau sudah full URL, langsung return
+    if (str_starts_with($path, 'http')) {
+        return $path;
+    }
+
+    // kalau cuma path TMDB
+    return 'https://image.tmdb.org/t/p/w500' . $path;
+    }
+
 
 
 
@@ -89,7 +107,7 @@ class MovieController extends Controller
                     'id' => $movie->category->id,
                     'name' => $movie->category->name,
                 ],
-                'thumbnail' => $movie->thumbnail
+                'thumbnail' => $this->tmdbThumbnail($movie->thumbnail)
             ]
         ]);
     }

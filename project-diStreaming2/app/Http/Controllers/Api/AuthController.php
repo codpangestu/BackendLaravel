@@ -73,7 +73,7 @@ class AuthController extends Controller
     // LOGOUT
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $request->user()->currentAccessToken()->delete(); // buat hapus access token
 
         return response()->json([
             'success' => true,
@@ -81,3 +81,6 @@ class AuthController extends Controller
         ]);
     }
 }
+
+// Make a request validation
+// From request folder

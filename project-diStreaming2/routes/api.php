@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\MovieCategoryController;
+use App\Http\Controllers\Api\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,6 +28,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/categories', [MovieCategoryController::class, 'store']);
     Route::put('/categories/{id}', [MovieCategoryController::class, 'update']);
     Route::delete('/categories/{id}', [MovieCategoryController::class, 'destroy']);
+
+    // Users
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
 });
 
+// API resource
 
